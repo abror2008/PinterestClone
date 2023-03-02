@@ -8,9 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pinterestclone.R
 import com.example.pinterestclone.adapter.PinterestAdapter
-import com.example.pinterestclone.databinding.FragmentDetaileBinding
 import com.example.pinterestclone.databinding.FragmentSaveBinding
 import com.example.pinterestclone.model.HomeItem
+import com.example.pinterestclone.model.SaveImage
 import com.example.pinterestclone.utils.viewBinding
 
 class SaveFragment : Fragment() {

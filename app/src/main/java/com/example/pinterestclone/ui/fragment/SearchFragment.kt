@@ -11,9 +11,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pinterestclone.R
 import com.example.pinterestclone.adapter.LishniyAdapter
 import com.example.pinterestclone.adapter.PinterestAdapter
+import com.example.pinterestclone.databinding.FragmentDetaileBinding
+import com.example.pinterestclone.databinding.FragmentSearchBinding
 import com.example.pinterestclone.model.OzimniModelim
+import com.example.pinterestclone.utils.viewBinding
 
 class SearchFragment : Fragment() {
+    private val binding by viewBinding { FragmentSearchBinding.bind(it) }
     lateinit var list:ArrayList<OzimniModelim>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,7 +29,7 @@ class SearchFragment : Fragment() {
 
     private fun initViews(view: View?) {
         list=loadList()
-        var rvSearch= view!!.findViewById<RecyclerView>(R.id.rv_search1)
+        var rvSearch= view!!.findViewById<RecyclerView>(R.id.rv_search2)
         val adapter = LishniyAdapter(list)
         val layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)

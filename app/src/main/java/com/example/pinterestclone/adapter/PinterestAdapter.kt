@@ -10,10 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.pinterestclone.R
 import com.example.pinterestclone.model.HomeItem
-import com.example.pinterestclone.model.Urls
+import com.google.gson.annotations.Until
 
 class PinterestAdapter(val list: ArrayList<HomeItem>) :
     RecyclerView.Adapter<PinterestAdapter.PinterestViewHolder>() {
+    var detail:((String)->Unit)?=null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PinterestViewHolder {
         return PinterestViewHolder(
             (LayoutInflater.from(parent.context).inflate(R.layout.item_main, parent, false))
@@ -25,6 +26,9 @@ class PinterestAdapter(val list: ArrayList<HomeItem>) :
         holder.apply {
             Glide.with(ivImage).load(item.urls.small).into(ivImage)
             tvLikes.text=item.likes.toString()
+            ivImage.setOnClickListener {
+                detail?.invoke(item.id)
+            }
         }
     }
 

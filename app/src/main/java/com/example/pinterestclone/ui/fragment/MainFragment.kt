@@ -1,16 +1,15 @@
 package com.example.pinterestclone.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pinterestclone.R
 import com.example.pinterestclone.adapter.PinterestAdapter
 import com.example.pinterestclone.data.remote.ApiClient
 import com.example.pinterestclone.databinding.FragmentMainBinding
-import com.example.pinterestclone.model.Home
 import com.example.pinterestclone.model.HomeItem
 import com.example.pinterestclone.utils.viewBinding
 import retrofit2.Call
@@ -27,7 +26,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         setupUI()
         initViews(view)
     }
-
     private fun setupUI() {
         binding.apply {
 
@@ -40,6 +38,11 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         adapter = PinterestAdapter(list)
         rvPhoto.adapter = adapter
         rvPhoto.layoutManager=GridLayoutManager(requireContext(),2)
+        adapter.detail={
+            val bundle=Bundle()
+            bundle.putString("id",it)
+            findNavController().navigate(R.id.action_mainFragment_to_detaileFragment,bundle)
+        }
     }
     private fun listPhotos1() {
         ApiClient.apiService.listPhotos1().enqueue(object :Callback<ArrayList<HomeItem>>{
